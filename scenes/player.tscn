@@ -1,31 +1,29 @@
-[gd_scene load_steps=11 format=3 uid="uid://ct707mbkipxd5"]
+[gd_scene load_steps=12 format=3 uid="uid://ct707mbkipxd5"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_1u8ih"]
 [ext_resource type="Texture2D" uid="uid://bbocr3pdex5q4" path="res://assets/sprites/chill_guy.png" id="2_u8318"]
 [ext_resource type="AudioStream" uid="uid://dxigvc31iklxl" path="res://assets/sounds/ju,p.mp3" id="3_mhdov"]
-[ext_resource type="Texture2D" uid="uid://cjxb34a8erpg7" path="res://assets/sprites/granola.jpg" id="4_e411e"]
+[ext_resource type="AudioStream" uid="uid://cuudhlnq5mg63" path="res://assets/sounds/gegagedigedagedago-chicken-nugget-made-with-Voicemod.mp3" id="3_r4wfr"]
+[ext_resource type="Script" path="res://scripts/gun.gd" id="3_rqujc"]
+[ext_resource type="Texture2D" uid="uid://mcnhb2i877r3" path="res://assets/sprites/granola.png" id="5_s037r"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sesb5"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmggj"]
 atlas = ExtResource("2_u8318")
-region = Rect2(196, 0, 196, 356)
+region = Rect2(334, 0, 334, 356)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_bpbh2"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_apjdt"]
 atlas = ExtResource("2_u8318")
-region = Rect2(196, 0, 196, 356)
+region = Rect2(0, 0, 334, 356)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_8uesu"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_e6une"]
 atlas = ExtResource("2_u8318")
-region = Rect2(0, 0, 196, 356)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aatpv"]
-atlas = ExtResource("2_u8318")
-region = Rect2(196, 0, 196, 356)
+region = Rect2(334, 0, 334, 356)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_fownj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_sesb5")
+"texture": SubResource("AtlasTexture_jmggj")
 }],
 "loop": true,
 "name": &"idle",
@@ -33,7 +31,7 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bpbh2")
+"texture": SubResource("AtlasTexture_jmggj")
 }],
 "loop": true,
 "name": &"jump",
@@ -41,10 +39,10 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_8uesu")
+"texture": SubResource("AtlasTexture_apjdt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_aatpv")
+"texture": SubResource("AtlasTexture_e6une")
 }],
 "loop": true,
 "name": &"run",
@@ -65,8 +63,24 @@ script = ExtResource("1_1u8ih")
 position = Vector2(-3, 0)
 scale = Vector2(0.0908979, 0.0908979)
 sprite_frames = SubResource("SpriteFrames_fownj")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+
+[node name="gun" type="Marker2D" parent="AnimatedSprite2D"]
+position = Vector2(-99.0122, 11.0014)
+script = ExtResource("3_rqujc")
+
+[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D/gun"]
+visible = false
+position = Vector2(7.62939e-06, 0)
+scale = Vector2(-0.207663, -0.207663)
+texture = ExtResource("5_s037r")
+
+[node name="shoot" type="AudioStreamPlayer2D" parent="AnimatedSprite2D"]
+position = Vector2(-99.0122, 11.0014)
+stream = ExtResource("3_r4wfr")
+
+[node name="Timer" type="Timer" parent="AnimatedSprite2D"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 1)
@@ -76,9 +90,4 @@ shape = SubResource("CapsuleShape2D_myhnq")
 scale = Vector2(0.993405, 1)
 stream = ExtResource("3_mhdov")
 
-[node name="granola" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(-12, -7)
-scale = Vector2(-0.0530493, 0.0313523)
-texture = ExtResource("4_e411e")
-centered = false
+[connection signal="timeout" from="AnimatedSprite2D/Timer" to="." method="_on_timer_timeout"]

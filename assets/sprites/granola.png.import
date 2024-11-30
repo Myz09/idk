@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjxb34a8erpg7"
-path="res://.godot/imported/granola.jpg-155ba3eac3060c0a7c3f7acdaa6a0519.ctex"
+uid="uid://mcnhb2i877r3"
+path="res://.godot/imported/granola.png-ba188d07b5901ba5cec10ffbc0e23764.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/granola.jpg"
-dest_files=["res://.godot/imported/granola.jpg-155ba3eac3060c0a7c3f7acdaa6a0519.ctex"]
+source_file="res://assets/sprites/granola.png"
+dest_files=["res://.godot/imported/granola.png-ba188d07b5901ba5cec10ffbc0e23764.ctex"]
 
 [params]
 

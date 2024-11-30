@@ -1,0 +1,132 @@
+[gd_scene load_steps=16 format=3 uid="uid://c5w5vhot6gu5w"]
+
+[ext_resource type="AudioStream" uid="uid://cuudhlnq5mg63" path="res://assets/sounds/gegagedigedagedago-chicken-nugget-made-with-Voicemod.mp3" id="1_gvuiw"]
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_v6yga"]
+[ext_resource type="Texture2D" uid="uid://d4bhtkqf4w338" path="res://assets/sprites/nugget.png" id="2_7stv4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w6biq"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(0, 0, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6rpyv"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(246, 0, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ebbli"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(492, 0, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3juj"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(738, 0, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhn4v"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(984, 0, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_48j2j"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(0, 235, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eq7hq"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(246, 235, 246, 235)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5suu"]
+atlas = ExtResource("2_7stv4")
+region = Rect2(492, 235, 246, 235)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6e563"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w6biq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6rpyv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ebbli")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r3juj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhn4v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_48j2j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eq7hq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5suu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 7.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n5sk1"]
+radius = 4.0
+
+[sub_resource type="Animation" id="Animation_cd0k7"]
+resource_name = "destroy"
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.266667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"update": 0,
+"values": []
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1gno1"]
+_data = {
+"destroy": SubResource("Animation_cd0k7")
+}
+
+[node name="Bullet" type="RigidBody2D"]
+gravity_scale = 0.1
+script = ExtResource("1_v6yga")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3.8147e-06, -3.8147e-06)
+rotation = 3.14159
+scale = Vector2(-0.035534, -0.035534)
+sprite_frames = SubResource("SpriteFrames_6e563")
+frame_progress = 0.796088
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_n5sk1")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("1_gvuiw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_1gno1")
+}
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
