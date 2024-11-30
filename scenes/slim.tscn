@@ -1,43 +1,23 @@
-[gd_scene load_steps=10 format=3 uid="uid://butueqllguy1g"]
+[gd_scene load_steps=8 format=3 uid="uid://butueqllguy1g"]
 
 [ext_resource type="Script" path="res://scripts/slim.gd" id="1_eo7rb"]
-[ext_resource type="Texture2D" uid="uid://c3sucuouie882" path="res://assets/sprites/slime_green.png" id="1_f2tcc"]
+[ext_resource type="Texture2D" uid="uid://dvf1lflejuo82" path="res://assets/sprites/oioioi.webp" id="2_f18kx"]
 [ext_resource type="PackedScene" uid="uid://hy887qpryi80" path="res://scenes/killzone.tscn" id="2_rt282"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_wvq2g"]
-atlas = ExtResource("1_f2tcc")
-region = Rect2(0, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_biuxs"]
-atlas = ExtResource("1_f2tcc")
-region = Rect2(24, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_78q8i"]
-atlas = ExtResource("1_f2tcc")
-region = Rect2(48, 24, 24, 24)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5nin2"]
-atlas = ExtResource("1_f2tcc")
-region = Rect2(72, 24, 24, 24)
+[ext_resource type="Texture2D" uid="uid://bic8xohv670t7" path="res://assets/sprites/oioioismushed.webp" id="3_3ey80"]
+[ext_resource type="AudioStream" uid="uid://vhuc668hqirj" path="res://assets/sounds/oi-oi-oi-made-with-Voicemod.mp3" id="5_xw08t"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4s0qt"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_wvq2g")
+"texture": ExtResource("2_f18kx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_biuxs")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_78q8i")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5nin2")
+"texture": ExtResource("3_3ey80")
 }],
 "loop": true,
 "name": &"new_animation",
-"speed": 9.0
+"speed": 3.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7c4rx"]
@@ -48,11 +28,11 @@ script = ExtResource("1_eo7rb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -11)
+scale = Vector2(0.044523, 0.044523)
 sprite_frames = SubResource("SpriteFrames_4s0qt")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame = 3
-frame_progress = 0.603042
+frame_progress = 0.448139
 
 [node name="killzone" parent="." instance=ExtResource("2_rt282")]
 
@@ -67,3 +47,8 @@ target_position = Vector2(11, 0)
 [node name="raycastl" type="RayCast2D" parent="."]
 position = Vector2(0, -6)
 target_position = Vector2(-11, 0)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_xw08t")
+volume_db = -5.0
+parameters/looping = true
