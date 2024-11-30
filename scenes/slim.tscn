@@ -1,13 +1,40 @@
-[gd_scene load_steps=8 format=3 uid="uid://butueqllguy1g"]
+[gd_scene load_steps=12 format=3 uid="uid://butueqllguy1g"]
 
 [ext_resource type="Script" path="res://scripts/slim.gd" id="1_eo7rb"]
 [ext_resource type="Texture2D" uid="uid://dvf1lflejuo82" path="res://assets/sprites/oioioi.webp" id="2_f18kx"]
 [ext_resource type="PackedScene" uid="uid://hy887qpryi80" path="res://scenes/killzone.tscn" id="2_rt282"]
 [ext_resource type="Texture2D" uid="uid://bic8xohv670t7" path="res://assets/sprites/oioioismushed.webp" id="3_3ey80"]
+[ext_resource type="Texture2D" uid="uid://cm68am56v8382" path="res://assets/sprites/oioioismusheded.png" id="4_nlskd"]
+[ext_resource type="Script" path="res://scenes/slimekillzone.gd" id="5_588ph"]
 [ext_resource type="AudioStream" uid="uid://vhuc668hqirj" path="res://assets/sounds/oi-oi-oi-made-with-Voicemod.mp3" id="5_xw08t"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xwxq7"]
+atlas = ExtResource("4_nlskd")
+region = Rect2(303, 0, 303, 276)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_by6x2"]
+atlas = ExtResource("4_nlskd")
+region = Rect2(0, 276, 303, 276)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_4s0qt"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_f18kx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_3ey80")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xwxq7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_by6x2")
+}],
+"loop": false,
+"name": &"die",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_f18kx")
@@ -30,22 +57,26 @@ script = ExtResource("1_eo7rb")
 position = Vector2(0, -11)
 scale = Vector2(0.044523, 0.044523)
 sprite_frames = SubResource("SpriteFrames_4s0qt")
-animation = &"new_animation"
+animation = &"die"
 autoplay = "new_animation"
-frame_progress = 0.448139
+frame = 3
+frame_progress = 1.0
 
 [node name="killzone" parent="." instance=ExtResource("2_rt282")]
+position = Vector2(-1, -1)
+scale = Vector2(1.72, 1.72)
+script = ExtResource("5_588ph")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="killzone"]
 position = Vector2(0, -5.5)
 shape = SubResource("RectangleShape2D_7c4rx")
 
 [node name="raycastr" type="RayCast2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(3, -7)
 target_position = Vector2(11, 0)
 
 [node name="raycastl" type="RayCast2D" parent="."]
-position = Vector2(0, -6)
+position = Vector2(-4, -6)
 target_position = Vector2(-11, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

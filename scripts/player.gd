@@ -1,4 +1,4 @@
-extends CharacterBody2D
+class_name Player extends CharacterBody2D
 
 
 const SPEED = 70.0
@@ -6,9 +6,9 @@ const JUMP_VELOCITY = -250.0
 var double = true
 var direction = -1.0
 var t = false
-var offset_distance = 30
+var offset_distance = -30
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var bullet_velocity = -450
+var bullet_velocity = 450
 const bullet = preload("res://scenes/bullet.tscn")
 
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
@@ -23,14 +23,15 @@ func fire():
 	bullet_instance.position = get_global_position() + Vector2(offset_distance, 0).rotated(rotation)
 	bullet_instance.rotation_degrees = rotation_degrees
 
-	#This has been altered since Godot 3
+	#adds bullet speed
 	bullet_instance.apply_impulse( Vector2(-bullet_velocity,0).rotated(rotation), Vector2())
+	#adds bullet
 	get_tree().get_root().call_deferred("add_child",bullet_instance)
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if Input.is_action_just_pressed("shoot"):# and t == false:
 		fire()
 		t = true
+		#bullet cooldown
 		$AnimatedSprite2D/Timer.start()
 		print("timer started")
 
@@ -49,15 +50,15 @@ func _physics_process(delta: float) -> void:
 	#input direction: -1, 0, 1
 	var direction = Input.get_axis("move_left", "move_right")
 	
-	#flip sprite
+	#flip sprite and changes bullet direction and offset
 	if direction > 0:
 		animated_sprite.flip_h = true
-		bullet_velocity = 450
-		offset_distance = -30
-	elif direction < 0:
-		animated_sprite.flip_h = false
 		bullet_velocity = -450
 		offset_distance = 30
+	elif direction < 0:
+		animated_sprite.flip_h = false
+		bullet_velocity = 450
+		offset_distance = -30
 		
 	#play animation
 	if is_on_floor():

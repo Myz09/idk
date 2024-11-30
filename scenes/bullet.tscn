@@ -114,13 +114,13 @@ position = Vector2(-3.8147e-06, -3.8147e-06)
 rotation = 3.14159
 scale = Vector2(-0.035534, -0.035534)
 sprite_frames = SubResource("SpriteFrames_6e563")
-frame_progress = 0.796088
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_n5sk1")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("1_gvuiw")
+volume_db = -3.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

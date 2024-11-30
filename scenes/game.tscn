@@ -183,9 +183,6 @@ texture = ExtResource("4_y4pjj")
 0:10/size_in_atlas = Vector2i(11, 11)
 0:10/0 = 0
 0:10/0/physics_layer_0/polygon_0/points = PackedVector2Array(-91.9239, -76.3675, 91.9239, -79.196, 86.267, 83.4386, -84.8528, 82.0244)
-22:0/size_in_atlas = Vector2i(10, 10)
-22:0/0 = 0
-22:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-90.5097, -86.267, 86.267, -89.0955, 86.267, 83.4386, -84.8528, 87.6812)
 32:0/size_in_atlas = Vector2i(10, 10)
 32:0/0 = 0
 32:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-83.4386, -76.3675, 77.7818, -77.7818, 77.7818, -16.9706, -76.3675, -16.9706)
@@ -409,6 +406,32 @@ sources/0 = SubResource("TileSetAtlasSource_kb82b")
 
 [node name="Tutorial" type="Node2D"]
 
+[node name="labels" type="Node" parent="."]
+
+[node name="movement" type="Label" parent="labels"]
+offset_left = -32.0
+offset_top = 26.0
+offset_right = 54.0
+offset_bottom = 49.0
+theme_override_fonts/font = ExtResource("7_iev2m")
+theme_override_font_sizes/font_size = 8
+text = "w, up arrow, or space to jump
+a or left arrow to move left
+d or right arrow to move right
+s, / or left click to shoot
+"
+
+[node name="goomba" type="Label" parent="labels"]
+offset_left = 229.0
+offset_top = -29.0
+offset_right = 348.0
+offset_bottom = 1.0
+theme_override_fonts/font = ExtResource("7_iev2m")
+theme_override_font_sizes/font_size = 8
+text = "this is an oi oi oi 
+jump on or shoot it 
+to kill it"
+
 [node name="gamemanag" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("1_csimg")
@@ -503,14 +526,3 @@ tile_set = SubResource("TileSet_r7hcg")
 
 [node name="slim" parent="." instance=ExtResource("6_hwmw3")]
 position = Vector2(296, 16)
-
-[node name="labels" type="Node" parent="."]
-
-[node name="Label" type="Label" parent="labels"]
-offset_left = -32.0
-offset_top = 26.0
-offset_right = 54.0
-offset_bottom = 49.0
-theme_override_fonts/font = ExtResource("7_iev2m")
-theme_override_font_sizes/font_size = 8
-text = "space to jump"
