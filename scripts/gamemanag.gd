@@ -2,7 +2,7 @@ extends Node
 
 var score = 0
 
-@onready var scorel: Label = $score/scorel
+@onready var scorel: Label = $scorel
 
 
 func add_point():
