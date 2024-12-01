@@ -422,10 +422,9 @@ s, / or left click to shoot
 "
 
 [node name="goomba" type="Label" parent="labels"]
-offset_left = 229.0
-offset_top = -29.0
-offset_right = 348.0
-offset_bottom = 1.0
+offset_left = 232.0
+offset_top = -30.0
+offset_right = 351.0
 theme_override_fonts/font = ExtResource("7_iev2m")
 theme_override_font_sizes/font_size = 8
 text = "this is an oi oi oi 

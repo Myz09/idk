@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c5w5vhot6gu5w"]
+[gd_scene load_steps=17 format=3 uid="uid://c5w5vhot6gu5w"]
 
 [ext_resource type="AudioStream" uid="uid://cuudhlnq5mg63" path="res://assets/sounds/gegagedigedagedago-chicken-nugget-made-with-Voicemod.mp3" id="1_gvuiw"]
 [ext_resource type="Script" path="res://scripts/bullet.gd" id="1_v6yga"]
@@ -105,6 +105,9 @@ _data = {
 "destroy": SubResource("Animation_cd0k7")
 }
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_upuv2"]
+radius = 4.0
+
 [node name="Bullet" type="RigidBody2D"]
 gravity_scale = 0.1
 script = ExtResource("1_v6yga")
@@ -129,4 +132,13 @@ libraries = {
 
 [node name="Timer" type="Timer" parent="."]
 
+[node name="hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("CircleShape2D_upuv2")
+
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="hitbox" to="." method="_on_hitbox_area_entered"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
