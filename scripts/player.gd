@@ -14,6 +14,9 @@ const bullet = preload("res://scenes/bullet.tscn")
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var gun: Gun = $AnimatedSprite2D/gun
 
+#wait
+
+
 func _on_timer_timeout():
 	t = false
 func fire():
@@ -27,6 +30,7 @@ func fire():
 	bullet_instance.apply_impulse( Vector2(-bullet_velocity,0).rotated(rotation), Vector2())
 	#adds bullet
 	get_tree().get_root().call_deferred("add_child",bullet_instance)
+
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("shoot"):# and t == false:
 		fire()

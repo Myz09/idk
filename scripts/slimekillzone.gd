@@ -5,7 +5,7 @@ extends Area2D
 func _on_body_entered(body: Node2D) -> void:
 	if body is Player:	
 		var y_delta = position.y -body.position.y
-		if y_delta > 9.5:
+		if y_delta > 8:
 			print("destroy enemy")
 			$"../AnimatedSprite2D".play("die")
 			$"..".queue_free()
