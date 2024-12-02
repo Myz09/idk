@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://cd41ifll3wofb"]
+
+[ext_resource type="Texture2D" uid="uid://ck2aukuwcvytt" path="res://assets/misc/White & Black Christmas Tree Desktop Wallpaper (1).png" id="1_lu85v"]
+
+[node name="Sprite2D" type="Sprite2D"]
+position = Vector2(225, -3)
+scale = Vector2(0.481019, 0.260648)
+texture = ExtResource("1_lu85v")

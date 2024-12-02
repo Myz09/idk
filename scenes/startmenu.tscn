@@ -1,0 +1,49 @@
+[gd_scene load_steps=4 format=3 uid="uid://bifodietki0wo"]
+
+[ext_resource type="Script" path="res://scripts/startmenu.gd" id="1_hiwb3"]
+[ext_resource type="Texture2D" uid="uid://07to2gi3bo6g" path="res://assets/misc/menubkg.png" id="1_xra3e"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_6hb4r"]
+
+[node name="Startmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hiwb3")
+
+[node name="game" type="Button" parent="."]
+layout_mode = 0
+offset_left = 478.0
+offset_top = 184.0
+offset_right = 566.0
+offset_bottom = 215.0
+scale = Vector2(4.14743, 4.14743)
+text = "Play game"
+
+[node name="intro" type="Button" parent="."]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 345.0
+offset_right = 579.0
+offset_bottom = 376.0
+scale = Vector2(4.14743, 4.14743)
+text = "replay intro"
+
+[node name="MenuBkg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(585, 313)
+texture = SubResource("CompressedTexture2D_6hb4r")
+
+[node name="Menubkg" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(589, 319)
+scale = Vector2(0.714728, 0.686273)
+texture = ExtResource("1_xra3e")
+
+[connection signal="pressed" from="game" to="." method="_on_game_pressed"]
+[connection signal="pressed" from="intro" to="." method="_on_intro_pressed"]

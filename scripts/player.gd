@@ -4,6 +4,7 @@ class_name Player extends CharacterBody2D
 const SPEED = 70.0
 const JUMP_VELOCITY = -250.0
 var double = true
+var just_jumped = false
 var direction = -1.0
 var t = false
 var offset_distance = -30
@@ -15,7 +16,6 @@ const bullet = preload("res://scenes/bullet.tscn")
 @onready var gun: Gun = $AnimatedSprite2D/gun
 
 #wait
-
 
 func _on_timer_timeout():
 	t = false
@@ -40,11 +40,15 @@ func _physics_process(delta: float) -> void:
 		print("timer started")
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or double):
-		if not is_on_floor():
-			double = false
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or (double and just_jumped)):
 		velocity.y = JUMP_VELOCITY
 		$AudioStreamPlayer2D.play()
+		if not is_on_floor():
+			double = false
+		else:
+			just_jumped = true
+
+
 	if is_on_floor():
 		double = true
 	else:
@@ -79,3 +83,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+	if Globals.alive == false:
+		$Label.visible = true
+	else:
+		$Label.visible = false

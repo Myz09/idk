@@ -10,6 +10,8 @@ var health : int = 3
 @onready var animated_sprite: AnimatedSprite2D = $AnimatedSprite2D
 func _ready() -> void:
 	$AudioStreamPlayer2D.play()	
+	Globals.current_goombas +=1
+	print(Globals.current_goombas)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -31,5 +33,7 @@ func _on_hurtbox_area_entered(area: Area2D) -> void:
 		print("health: ", health)
 		
 		if health <= 0:
+			Globals.current_goombas-=1
+			print(Globals.current_goombas)
 			queue_free()
 	

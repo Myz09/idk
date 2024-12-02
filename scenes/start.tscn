@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://be4c6kl6wu8fk"]
+
+[ext_resource type="Script" path="res://scripts/start.gd" id="1_2a6la"]
+[ext_resource type="Texture2D" uid="uid://cojbxqm86uug1" path="res://assets/misc/start.webp" id="2_y5co5"]
+
+[node name="start" type="Node2D"]
+script = ExtResource("1_2a6la")
+
+[node name="Button" type="Button" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(27.76, 21.96)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "click"
+
+[node name="Start" type="Sprite2D" parent="."]
+position = Vector2(573, 339)
+texture = ExtResource("2_y5co5")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(597, 341)
+editor_draw_limits = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

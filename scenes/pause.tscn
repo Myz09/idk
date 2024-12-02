@@ -1,0 +1,33 @@
+[gd_scene load_steps=4 format=3 uid="uid://fhxwmymgh6y7"]
+
+[ext_resource type="Script" path="res://scripts/pause.gd" id="1_q3c1f"]
+[ext_resource type="Texture2D" uid="uid://m33orwcy2siu" path="res://assets/misc/pause.webp" id="2_iaigq"]
+[ext_resource type="Texture2D" uid="uid://cfoiystjqifyx" path="res://assets/misc/resume.webp" id="3_e3vac"]
+
+[node name="pause" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_q3c1f")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 442.0
+offset_right = 404.0
+offset_bottom = 450.0
+scale = Vector2(45.6816, 16.2343)
+
+[node name="Pause" type="Sprite2D" parent="."]
+position = Vector2(609, 336)
+scale = Vector2(1.04, 1.04)
+texture = ExtResource("2_iaigq")
+
+[node name="Resume" type="Sprite2D" parent="."]
+position = Vector2(574, 512)
+texture = ExtResource("3_e3vac")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

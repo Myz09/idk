@@ -1,7 +1,10 @@
-[gd_scene load_steps=17 format=3 uid="uid://8bsda0ix4238"]
+[gd_scene load_steps=20 format=3 uid="uid://8bsda0ix4238"]
 
 [ext_resource type="Script" path="res://scripts/coin.gd" id="1_7dwow"]
 [ext_resource type="Texture2D" uid="uid://gxrb84brfq2l" path="res://assets/sprites/coin.png" id="1_ja3cp"]
+[ext_resource type="AudioStream" uid="uid://wofr6yluhlcn" path="res://assets/sounds/coined.mp3" id="3_lph7m"]
+[ext_resource type="Script" path="res://scripts/gamemanag.gd" id="4_2ltr5"]
+[ext_resource type="FontFile" uid="uid://b2rvu2yqonfi" path="res://assets/fonts/PixelOperator8.ttf" id="5_olo3u"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_och2a"]
 atlas = ExtResource("1_ja3cp")
@@ -108,5 +111,23 @@ autoplay = "default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_eo3bm")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_lph7m")
+volume_db = 1.0
+
+[node name="gamemanag" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("4_2ltr5")
+
+[node name="scorel" type="Label" parent="gamemanag"]
+offset_left = 962.0
+offset_top = -97.0
+offset_right = 1063.0
+offset_bottom = -74.0
+theme_override_fonts/font = ExtResource("5_olo3u")
+theme_override_font_sizes/font_size = 8
+text = "you have x coins"
+metadata/_edit_use_anchors_ = true
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

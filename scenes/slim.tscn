@@ -84,7 +84,8 @@ target_position = Vector2(-11, 0)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_xw08t")
-volume_db = -5.0
+volume_db = -2.5
+max_distance = 500.0
 parameters/looping = true
 
 [node name="hurtbox" type="Area2D" parent="."]
